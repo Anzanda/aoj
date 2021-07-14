@@ -5,21 +5,17 @@ using namespace std;
 #define endl "\n"
 
 int n;
-int sum(int start, int end) {
-    if(start == end) {
+int sum(int back) {
+    if(back == 1) {
         return 1;
     }
-    int mid = (start + end)/2;
-    int ret = 2 * sum(start, mid);
-    ret += mid*mid;
-    if(end%2 == 1) {
-        ret -= (end+1);
+    if(back%2 == 1) {
+        return sum(back-1) + back;
     }
-    return ret;
-
+    return 2*sum(back/2) + (back/2)*(back/2);
 }
 int main(void) {
     cin >> n;
-    cout << sum(1, n) << endl;
+    cout << sum(n) << endl;
     return 0;
 }
